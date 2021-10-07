@@ -13,11 +13,7 @@ module.exports = {
     "prettier",
     "react-app",
   ],
-  plugins: [
-    "sort-destructure-keys",
-    "sort-keys-fix",
-    "typescript-sort-keys",
-  ],
+  plugins: ["sort-destructure-keys", "sort-keys-fix", "typescript-sort-keys"],
   rules: {
     "import/no-default-export": 2,
     "no-restricted-syntax": [
@@ -31,10 +27,12 @@ module.exports = {
     "prefer-template": 2,
     "react/jsx-boolean-value": 2,
     "react/jsx-sort-props": 2,
+    "react/jsx-uses-react": 0,
     "react/no-access-state-in-setstate": 2,
     "react/no-array-index-key": 2,
+    "react/react-in-jsx-scope": 0,
     "react/self-closing-comp": 2,
-    "require-await": "off",
+    "require-await": 0,
     "sort-destructure-keys/sort-destructure-keys": 2,
     "sort-keys-fix/sort-keys-fix": 2,
     "typescript-sort-keys/interface": 2,
