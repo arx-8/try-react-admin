@@ -67,6 +67,11 @@ module.exports = {
     ],
     "@typescript-eslint/no-explicit-any": 2,
     "@typescript-eslint/no-misused-promises": 2,
+    "@typescript-eslint/no-unused-vars": [
+      2,
+      // for import { jsx } from "@emotion/react"
+      { vars: "all", args: "all", varsIgnorePattern: "^jsx$" },
+    ],
     "@typescript-eslint/prefer-readonly": 2,
     "@typescript-eslint/require-await": 2,
   },

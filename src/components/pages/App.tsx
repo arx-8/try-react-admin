@@ -1,9 +1,16 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from "@emotion/react"
 import logo from "src/assets/logo.svg"
 import "./App.css"
 
 export function App(): JSX.Element {
   return (
-    <div className="App">
+    <div
+      css={css`
+        text-align: center;
+      `}
+    >
       <header className="App-header">
         <img alt="logo" className="App-logo" src={logo} />
         <p>

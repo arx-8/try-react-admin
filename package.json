@@ -7,6 +7,8 @@
     "npm": "7.x"
   },
   "dependencies": {
+    "@emotion/react": "11.4.1",
+    "normalize.css": "8.0.1",
     "react-dom": "17.0.2",
     "react-scripts": "4.0.3"
   },
