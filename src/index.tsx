@@ -1,14 +1,17 @@
-import React from "react"
+import React, { Suspense } from "react"
 import ReactDOM from "react-dom"
-import { App } from "src/components/pages/App"
 import { GlobalStyles } from "src/components/styles/GlobalStyles"
-import { reportWebVitals } from "./reportWebVitals"
+import { reportWebVitals } from "src/utils/reportWebVitals"
+
+const IndexPage = React.lazy(() => import("src/components/pages/IndexPage"))
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyles>
-      <App />
-    </GlobalStyles>
+    <Suspense fallback="">
+      <GlobalStyles>
+        <IndexPage />
+      </GlobalStyles>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
 )

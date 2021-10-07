@@ -2,9 +2,9 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/react"
 import logo from "src/assets/logo.svg"
-import "./App.css"
+import "./IndexPage.css"
 
-export function App(): JSX.Element {
+function IndexPage(): JSX.Element {
   return (
     <div
       css={css`
@@ -28,3 +28,5 @@ export function App(): JSX.Element {
     </div>
   )
 }
+
+export default IndexPage
