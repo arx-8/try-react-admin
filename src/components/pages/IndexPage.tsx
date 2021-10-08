@@ -1,32 +1,18 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from "@emotion/react"
-import logo from "src/assets/logo.svg"
-import "./IndexPage.css"
+import { jsx } from "@emotion/react"
+import jsonServerProvider from "ra-data-json-server"
+import { Admin, EditGuesser, Resource } from "react-admin"
+import { PostList } from "src/components/organisms/PostList"
+import { UserList } from "src/components/organisms/UserList"
 
-function IndexPage(): JSX.Element {
-  return (
-    <div
-      css={css`
-        text-align: center;
-      `}
-    >
-      <header className="App-header">
-        <img alt="logo" className="App-logo" src={logo} />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
-}
+const dataProvider = jsonServerProvider("https://jsonplaceholder.typicode.com")
+
+const IndexPage = (): JSX.Element => (
+  <Admin dataProvider={dataProvider}>
+    <Resource list={UserList} name="users" />
+    <Resource edit={EditGuesser} list={PostList} name="posts" />
+  </Admin>
+)
 
 export default IndexPage
