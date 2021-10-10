@@ -23,10 +23,13 @@ const httpClient: typeof fetchUtils.fetchJson = async (url, options = {}) => {
   return fetchUtils.fetchJson(url, options)
 }
 const dataProvider = createDataProvider(
-  "http://jsonplaceholder.typicode.com",
-  // "http://localhost:9999",
+  // "http://jsonplaceholder.typicode.com",
+  "http://localhost:9999",
   httpClient
 )
+
+// Memo: Overwrite-able
+// dataProvider.getMany = undefined as unknown as typeof dataProvider.getMany
 
 const IndexPage = (): JSX.Element => (
   <Admin dataProvider={dataProvider}>
