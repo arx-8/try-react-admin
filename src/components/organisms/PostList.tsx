@@ -4,13 +4,16 @@ import {
   List,
   ListProps,
   ReferenceField,
+  ReferenceInput,
+  SelectInput,
   TextField,
+  TextInput,
 } from "react-admin"
 
 type Props = ListProps
 
 export const PostList = (props: Props): JSX.Element => (
-  <List {...props}>
+  <List {...props} filters={postFilters}>
     <Datagrid>
       <TextField source="id" />
       <ReferenceField label="userId" reference="users" source="userId">
@@ -24,3 +27,16 @@ export const PostList = (props: Props): JSX.Element => (
     </Datagrid>
   </List>
 )
+
+const postFilters = [
+  <TextInput alwaysOn key="1" label="Search" source="q" />,
+  <ReferenceInput
+    allowEmpty
+    key="2"
+    label="User"
+    reference="users"
+    source="userId"
+  >
+    <SelectInput optionText="name" />
+  </ReferenceInput>,
+]
