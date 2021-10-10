@@ -3,26 +3,28 @@
 import { jsx } from "@emotion/react"
 import PostIcon from "@material-ui/icons/Book"
 import UserIcon from "@material-ui/icons/Group"
-import jsonServerProvider from "ra-data-json-server"
+import createDataProvider from "ra-data-json-server"
 import { Admin, EditGuesser, fetchUtils, Resource } from "react-admin"
 import { PostCreate } from "src/components/organisms/PostCreate"
 import { PostEdit } from "src/components/organisms/PostEdit"
 import { PostList } from "src/components/organisms/PostList"
 import { UserCreate } from "src/components/organisms/UserCreate"
 import { UserList } from "src/components/organisms/UserList"
+import { sleep } from "src/utils"
 
-const httpClient: typeof fetchUtils.fetchJson = (url, options = {}) => {
+const httpClient: typeof fetchUtils.fetchJson = async (url, options = {}) => {
   options.headers = new Headers({ Accept: "application/json" })
-  // add your own headers here
+  // MEMO: await 使える
+  const token = await sleep(1000).then(() => "SRTRDFVESGNJYTUKTYTHRG")
   options.user = {
     authenticated: true,
-    token: "SRTRDFVESGNJYTUKTYTHRG",
+    token: token,
   }
   return fetchUtils.fetchJson(url, options)
 }
-const dataProvider = jsonServerProvider(
-  // "http://jsonplaceholder.typicode.com",
-  "http://localhost:9999",
+const dataProvider = createDataProvider(
+  "http://jsonplaceholder.typicode.com",
+  // "http://localhost:9999",
   httpClient
 )
 
