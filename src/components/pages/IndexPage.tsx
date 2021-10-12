@@ -3,36 +3,16 @@
 import { jsx } from "@emotion/react"
 import PostIcon from "@material-ui/icons/Book"
 import UserIcon from "@material-ui/icons/Group"
-import createDataProvider from "ra-data-json-server"
-import { Admin, EditGuesser, fetchUtils, Resource } from "react-admin"
+import { Admin, EditGuesser, Resource } from "react-admin"
+import { safetyDataProvider } from "src/components/helpers/createSafetyDataProvider"
 import { PostCreate } from "src/components/organisms/PostCreate"
 import { PostEdit } from "src/components/organisms/PostEdit"
 import { PostList } from "src/components/organisms/PostList"
 import { UserCreate } from "src/components/organisms/UserCreate"
 import { UserList } from "src/components/organisms/UserList"
-import { sleep } from "src/utils"
-
-const httpClient: typeof fetchUtils.fetchJson = async (url, options = {}) => {
-  options.headers = new Headers({ Accept: "application/json" })
-  // MEMO: await 使える
-  const token = await sleep(1000).then(() => "SRTRDFVESGNJYTUKTYTHRG")
-  options.user = {
-    authenticated: true,
-    token: token,
-  }
-  return fetchUtils.fetchJson(url, options)
-}
-const dataProvider = createDataProvider(
-  // "http://jsonplaceholder.typicode.com",
-  "http://localhost:9999",
-  httpClient
-)
-
-// Memo: Overwrite-able
-// dataProvider.getMany = undefined as unknown as typeof dataProvider.getMany
 
 const IndexPage = (): JSX.Element => (
-  <Admin dataProvider={dataProvider}>
+  <Admin dataProvider={safetyDataProvider}>
     <Resource
       create={UserCreate}
       edit={EditGuesser}
