@@ -11,13 +11,33 @@ import {
 type Props = EditProps
 
 export const PostEdit = (props: Props): JSX.Element => (
-  <Edit {...props} title={<PostTitle />}>
+  <Edit
+    {...props}
+    title={<PostTitle />}
+    transform={(v) => {
+      console.log(v)
+      return v
+    }}
+  >
     <SimpleForm>
+      <TextInput
+        InputProps={{
+          readOnly: true,
+        }}
+        source="id_big"
+        value="The big"
+      />
+
       <ReferenceInput reference="users" source="userId">
         <SelectInput optionText="name" />
       </ReferenceInput>
-      {/* <TextInput disabled source="id" /> */}
-      <TextInput source="title" />
+      <TextInput
+        InputProps={{
+          readOnly: true,
+        }}
+        disabled
+        source="title"
+      />
       <TextInput multiline source="body" />
     </SimpleForm>
   </Edit>
