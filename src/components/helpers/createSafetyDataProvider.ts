@@ -9,7 +9,7 @@ const apiUrl = "http://localhost:9999"
 const httpClient: typeof fetchUtils.fetchJson = async (url, options = {}) => {
   options.headers = new Headers({ Accept: "application/json" })
   // MEMO: await 使える
-  const token = await sleep(1000).then(() => "SRTRDFVESGNJYTUKTYTHRG")
+  const token = await sleep(10).then(() => "SRTRDFVESGNJYTUKTYTHRG")
   options.user = {
     authenticated: true,
     token: token,
