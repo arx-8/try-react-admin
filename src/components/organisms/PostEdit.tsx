@@ -3,7 +3,6 @@ import {
   EditProps,
   InjectedFieldProps,
   ReferenceInput,
-  SaveButton,
   SelectInput,
   SimpleForm,
   TextField,
@@ -12,6 +11,7 @@ import {
   ToolbarProps,
 } from "react-admin"
 import { DeleteButtonWithConfirm } from "src/components/organisms/DeleteButtonWithConfirm"
+import { SaveButtonWithConfirm } from "src/components/organisms/SaveButtonWithConfirm"
 
 type Props = EditProps
 
@@ -58,23 +58,16 @@ const confirmWithAnswer = (message: string, correctAnswer: string): boolean => {
 }
 
 const CustomToolbar = (props: ToolbarProps): JSX.Element => {
-  console.log(props)
-
   return (
     <Toolbar {...props}>
-      <SaveButton
+      <SaveButtonWithConfirm
+        confirm={() =>
+          confirmWithAnswer(
+            "入力値によっては即時に公開されます。保存しますか？ (よい場合は save と入力してください)",
+            "save"
+          )
+        }
         disabled={props.invalid}
-        handleSubmitWithRedirect={() => {
-          if (
-            confirmWithAnswer(
-              "入力値によっては即時に公開されます。保存しますか？ (よい場合は save と入力してください)",
-              "save"
-            )
-          ) {
-            return props.handleSubmitWithRedirect?.()
-          }
-          return undefined
-        }}
       />
       {/* <DeleteWithConfirmButton /> */}
       {/* <DeleteButton /> */}
